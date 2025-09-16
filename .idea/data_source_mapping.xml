@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/b78288cc-8077-4259-acca-fb0201ed16ae/console.sql" value="b78288cc-8077-4259-acca-fb0201ed16ae" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/b78288cc-8077-4259-acca-fb0201ed16ae/console_1.sql" value="b78288cc-8077-4259-acca-fb0201ed16ae" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/b78288cc-8077-4259-acca-fb0201ed16ae/console_2.sql" value="b78288cc-8077-4259-acca-fb0201ed16ae" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/b78288cc-8077-4259-acca-fb0201ed16ae/console_3.sql" value="b78288cc-8077-4259-acca-fb0201ed16ae" />
+  </component>
+</project>

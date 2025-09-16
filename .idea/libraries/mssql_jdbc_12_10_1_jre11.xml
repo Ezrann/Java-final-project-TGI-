@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="mssql-jdbc-12.10.1.jre11">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/mysql-connector-j-9.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jcalendar-1.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

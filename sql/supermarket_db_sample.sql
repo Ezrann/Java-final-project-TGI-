@@ -1,0 +1,58 @@
+---- Sample table definitions (modify to match your existing schema)
+--CREATE TABLE IF NOT EXISTS Employees (
+--    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
+--    FullName VARCHAR(100),
+--    Username VARCHAR(50) UNIQUE,
+--    Password VARCHAR(255),
+--    Role VARCHAR(20),
+--    Phone VARCHAR(20),
+--    Email VARCHAR(100)
+--);
+--
+--CREATE TABLE IF NOT EXISTS Customers (
+--    CustomerID INT AUTO_INCREMENT PRIMARY KEY,
+--    Name VARCHAR(100),
+--    Phone VARCHAR(20),
+--    Email VARCHAR(100),
+--    Address VARCHAR(255)
+--);
+--
+--CREATE TABLE IF NOT EXISTS Suppliers (
+--    SupplierID INT AUTO_INCREMENT PRIMARY KEY,
+--    SupplierName VARCHAR(150),
+--    ContactName VARCHAR(100),
+--    Phone VARCHAR(20),
+--    Email VARCHAR(100)
+--);
+--
+--CREATE TABLE IF NOT EXISTS Products (
+--    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+--    ProductName VARCHAR(150),
+--    Category VARCHAR(100),
+--    Price DECIMAL(10,2),
+--    StockQuantity INT,
+--    ReorderLevel INT,
+--    SupplierID INT,
+--    FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID)
+--);
+--
+--CREATE TABLE IF NOT EXISTS Sales (
+--    SaleID INT AUTO_INCREMENT PRIMARY KEY,
+--    SaleDate DATETIME,
+--    EmployeeID INT,
+--    CustomerID INT,
+--    TotalAmount DECIMAL(12,2),
+--    PaymentMethod VARCHAR(50),
+--    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID),
+--    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+--);
+--
+--CREATE TABLE IF NOT EXISTS SaleItems (
+--    SaleItemID INT AUTO_INCREMENT PRIMARY KEY,
+--    SaleID INT,
+--    ProductID INT,
+--    Quantity INT,
+--    Price DECIMAL(10,2),
+--    FOREIGN KEY (SaleID) REFERENCES Sales(SaleID),
+--    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+--);
