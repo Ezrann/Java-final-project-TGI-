@@ -25,18 +25,24 @@ public class MainMenuForm extends JFrame {
         JButton btnSuppliers = new JButton("Suppliers");
         JButton btnReports = new JButton("Reports");
 
-        // ✅ Open actual forms instead of showing placeholders
+        // Open forms
         btnProducts.addActionListener(e -> new ProductForm(currentUser).setVisible(true));
         btnPOS.addActionListener(e -> new POSForm(currentUser.getEmployeeID()).setVisible(true));
         btnEmployees.addActionListener(e -> new EmployeeForm(currentUser).setVisible(true));
-        btnSuppliers.addActionListener(e -> new SupplierForm().setVisible(true));
+        btnSuppliers.addActionListener(e -> new SupplierForm(currentUser).setVisible(true));
         btnReports.addActionListener(e -> new ReportForm().setVisible(true));
 
-        p.add(btnProducts);
-        p.add(btnPOS);
-        p.add(btnEmployees);
-        p.add(btnSuppliers);
-        p.add(btnReports);
+        // Role-based visibility
+        if ("Manager".equalsIgnoreCase(currentUser.getRole())) {
+            p.add(btnProducts);
+            p.add(btnPOS);
+            p.add(btnEmployees);
+            p.add(btnSuppliers);
+            p.add(btnReports);
+        } else if ("Cashier".equalsIgnoreCase(currentUser.getRole())) {
+            p.add(btnPOS);
+            p.add(btnProducts);
+        }
 
         add(p, BorderLayout.CENTER);
     }

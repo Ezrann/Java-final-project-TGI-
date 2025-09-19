@@ -50,7 +50,6 @@ public class EmployeeForm extends JFrame {
             Object[] inputs = {
                     "Full Name:", fullNameField,
                     "Username:", usernameField,
-                    "Password:", passwordField,
                     "Role:", roleField,
                     "Phone:", phoneField,
                     "Email:", emailField

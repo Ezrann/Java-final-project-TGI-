@@ -18,13 +18,16 @@ import java.util.List;
 public class POSForm extends JFrame {
     private JTable productTable;
     private DefaultTableModel productModel;
-    private DefaultListModel<String> listModel;
+
+    private JTable cartTable;
+    private DefaultTableModel cartModel;
+
     private List<SaleItem> currentItems = new ArrayList<>();
     private JComboBox<String> categoryBox; // 🔹 Category dropdown
 
     public POSForm(int employeeId) {
         setTitle("Point of Sale");
-        setSize(850, 500);
+        setSize(850, 600);
         setLocationRelativeTo(null);
         init(employeeId);
     }
@@ -62,11 +65,13 @@ public class POSForm extends JFrame {
 
         add(productPanel, BorderLayout.CENTER);
 
-        // 🔹 Cart (Sale items)
-        listModel = new DefaultListModel<>();
-        JList<String> saleList = new JList<>(listModel);
-        JScrollPane cartScroll = new JScrollPane(saleList);
-        cartScroll.setPreferredSize(new Dimension(850, 120));
+        // 🔹 Cart table instead of JList
+        cartModel = new DefaultTableModel(
+                new Object[]{"Product", "Quantity", "Price", "Subtotal"}, 0
+        );
+        cartTable = new JTable(cartModel);
+        JScrollPane cartScroll = new JScrollPane(cartTable);
+        cartScroll.setPreferredSize(new Dimension(850, 150));
 
         JButton checkout = new JButton("Checkout");
 
@@ -102,13 +107,34 @@ public class POSForm extends JFrame {
                         return;
                     }
 
-                    SaleItem item = new SaleItem();
-                    item.setProductID(pid);
-                    item.setQuantity(1);
-                    item.setPrice(p.getPrice());
-                    currentItems.add(item);
+                    // check if already in cart
+                    boolean found = false;
+                    for (int i = 0; i < currentItems.size(); i++) {
+                        SaleItem item = currentItems.get(i);
+                        if (item.getProductID() == pid) {
+                            item.setQuantity(item.getQuantity() + 1);
+                            cartModel.setValueAt(item.getQuantity(), i, 1);
+                            cartModel.setValueAt(item.getQuantity() * item.getPrice(), i, 3);
+                            found = true;
+                            break;
+                        }
+                    }
 
-                    listModel.addElement(p.getName() + " - $" + p.getPrice());
+                    if (!found) {
+                        SaleItem item = new SaleItem();
+                        item.setProductID(pid);
+                        item.setQuantity(1);
+                        item.setPrice(p.getPrice());
+                        currentItems.add(item);
+
+                        cartModel.addRow(new Object[]{
+                                p.getName(),
+                                1,
+                                p.getPrice(),
+                                p.getPrice()
+                        });
+                    }
+
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(this, "DB Error: " + ex.getMessage());
                 }
@@ -151,7 +177,7 @@ public class POSForm extends JFrame {
                 JOptionPane.showMessageDialog(this, "Sale completed. ID: " + saleId);
 
                 // clear cart and reload products
-                listModel.clear();
+                cartModel.setRowCount(0);
                 currentItems.clear();
                 loadProducts((String) categoryBox.getSelectedItem());
 

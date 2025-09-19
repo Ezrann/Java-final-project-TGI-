@@ -1,6 +1,7 @@
 package ui;
 
 import dao.SupplierDAO;
+import models.Employee;
 import models.Supplier;
 
 import javax.swing.*;
@@ -12,9 +13,12 @@ import java.util.List;
 public class SupplierForm extends JFrame {
     private JTable table;
     private DefaultTableModel model;
+    private Employee currentUser; // logged-in employee
 
-    public SupplierForm() {
-        setTitle("Supplier Management");
+    public SupplierForm(Employee loggedInEmp) {
+        this.currentUser = loggedInEmp;
+
+        setTitle("Supplier Management - Logged in as: " + loggedInEmp.getRole());
         setSize(750, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -25,20 +29,21 @@ public class SupplierForm extends JFrame {
 
         JPanel buttons = new JPanel();
         JButton btnAdd = new JButton("Add");
-        JButton btnEdit = new JButton("Edit");
+        JButton btnEdit = new JButton("Update");
         JButton btnDelete = new JButton("Delete");
-        JButton btnRefresh = new JButton("Refresh"); // ✅ New button
+        JButton btnRefresh = new JButton("Refresh");
 
         buttons.add(btnAdd);
         buttons.add(btnEdit);
         buttons.add(btnDelete);
-        buttons.add(btnRefresh); // ✅ add refresh button
+        buttons.add(btnRefresh);
         add(buttons, BorderLayout.SOUTH);
 
         loadSuppliers();
 
-        // Add Supplier
+        // 🔹 Add Supplier (Manager only)
         btnAdd.addActionListener(e -> {
+            if (!isManager()) return;
             Supplier s = showSupplierDialog(null);
             if (s != null) {
                 try {
@@ -50,8 +55,9 @@ public class SupplierForm extends JFrame {
             }
         });
 
-        // Edit Supplier
+        // 🔹 Edit Supplier (Manager only)
         btnEdit.addActionListener(e -> {
+            if (!isManager()) return;
             int row = table.getSelectedRow();
             if (row >= 0) {
                 Supplier s = new Supplier();
@@ -74,8 +80,9 @@ public class SupplierForm extends JFrame {
             }
         });
 
-        // Delete Supplier
+        // 🔹 Delete Supplier (Manager only)
         btnDelete.addActionListener(e -> {
+            if (!isManager()) return;
             int row = table.getSelectedRow();
             if (row >= 0) {
                 int id = (int) model.getValueAt(row, 0);
@@ -88,7 +95,7 @@ public class SupplierForm extends JFrame {
             }
         });
 
-        // ✅ Refresh Supplier list
+        // 🔹 Refresh Supplier list (Everyone can do this)
         btnRefresh.addActionListener(e -> loadSuppliers());
     }
 
@@ -137,5 +144,14 @@ public class SupplierForm extends JFrame {
             return sup;
         }
         return null;
+    }
+
+    // 🔹 Role validation helper
+    private boolean isManager() {
+        if (!"Manager".equalsIgnoreCase(currentUser.getRole())) {
+            JOptionPane.showMessageDialog(this, "Only Managers can perform this action.");
+            return false;
+        }
+        return true;
     }
 }

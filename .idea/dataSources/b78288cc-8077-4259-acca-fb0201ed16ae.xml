@@ -2,7 +2,6 @@
 <dataSource name="supermarket_db@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
     <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
       <ServerVersion>8.0.43</ServerVersion>
@@ -989,7 +988,7 @@
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="307" parent="301" name="CustomerID">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>4</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
@@ -1011,285 +1010,293 @@
       <Position>5</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="312" parent="301" name="PRIMARY">
+    <column id="312" parent="301" name="PasswordHash">
+      <Position>6</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="313" parent="301" name="Username">
+      <Position>7</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <index id="314" parent="301" name="PRIMARY">
       <ColNames>CustomerID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="313" parent="301" name="PRIMARY">
+    <key id="315" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="314" parent="302" name="EmployeeID">
-      <AutoIncrement>4</AutoIncrement>
+    <column id="316" parent="302" name="EmployeeID">
+      <AutoIncrement>5</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="315" parent="302" name="FullName">
+    <column id="317" parent="302" name="FullName">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="316" parent="302" name="Username">
+    <column id="318" parent="302" name="Username">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="317" parent="302" name="PasswordHash">
+    <column id="319" parent="302" name="PasswordHash">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="318" parent="302" name="Role">
+    <column id="320" parent="302" name="Role">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>enum(&apos;Manager&apos;, &apos;Cashier&apos;, &apos;Staff&apos;)|0e</StoredType>
     </column>
-    <column id="319" parent="302" name="Phone">
+    <column id="321" parent="302" name="Phone">
       <Position>6</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="320" parent="302" name="Email">
+    <column id="322" parent="302" name="Email">
       <Position>7</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="321" parent="302" name="HireDate">
+    <column id="323" parent="302" name="HireDate">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>8</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <column id="322" parent="302" name="Status">
+    <column id="324" parent="302" name="Status">
       <DefaultExpression>&apos;Active&apos;</DefaultExpression>
       <Position>9</Position>
       <StoredType>enum(&apos;Active&apos;, &apos;Inactive&apos;)|0e</StoredType>
     </column>
-    <index id="323" parent="302" name="PRIMARY">
+    <index id="325" parent="302" name="PRIMARY">
       <ColNames>EmployeeID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="324" parent="302" name="Username">
+    <index id="326" parent="302" name="Username">
       <ColNames>Username</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="325" parent="302" name="PRIMARY">
+    <key id="327" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="326" parent="302" name="Username">
+    <key id="328" parent="302" name="Username">
       <UnderlyingIndexName>Username</UnderlyingIndexName>
     </key>
-    <column id="327" parent="303" name="ProductID">
+    <column id="329" parent="303" name="ProductID">
       <AutoIncrement>13</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="328" parent="303" name="ProductName">
+    <column id="330" parent="303" name="ProductName">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="329" parent="303" name="Category">
+    <column id="331" parent="303" name="Category">
       <Position>3</Position>
       <StoredType>varchar(50)|0s</StoredType>
     </column>
-    <column id="330" parent="303" name="SupplierID">
+    <column id="332" parent="303" name="SupplierID">
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="331" parent="303" name="Price">
+    <column id="333" parent="303" name="Price">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <column id="332" parent="303" name="StockQuantity">
+    <column id="334" parent="303" name="StockQuantity">
       <DefaultExpression>0</DefaultExpression>
       <Position>6</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="333" parent="303" name="ReorderLevel">
+    <column id="335" parent="303" name="ReorderLevel">
       <DefaultExpression>10</DefaultExpression>
       <Position>7</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <foreign-key id="334" parent="303" name="Products_ibfk_1">
+    <foreign-key id="336" parent="303" name="Products_ibfk_1">
       <ColNames>SupplierID</ColNames>
       <OnDelete>set-null</OnDelete>
       <OnUpdate>cascade</OnUpdate>
       <RefColNames>SupplierID</RefColNames>
       <RefTableName>Suppliers</RefTableName>
     </foreign-key>
-    <index id="335" parent="303" name="PRIMARY">
+    <index id="337" parent="303" name="PRIMARY">
       <ColNames>ProductID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="336" parent="303" name="idx_product_name">
+    <index id="338" parent="303" name="idx_product_name">
       <ColNames>ProductName</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="337" parent="303" name="SupplierID">
+    <index id="339" parent="303" name="SupplierID">
       <ColNames>SupplierID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="338" parent="303" name="PRIMARY">
+    <key id="340" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="339" parent="304" name="SaleItemID">
+    <column id="341" parent="304" name="SaleItemID">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="340" parent="304" name="SaleID">
+    <column id="342" parent="304" name="SaleID">
       <Position>2</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="341" parent="304" name="ProductID">
+    <column id="343" parent="304" name="ProductID">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="342" parent="304" name="Quantity">
+    <column id="344" parent="304" name="Quantity">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="343" parent="304" name="UnitPrice">
+    <column id="345" parent="304" name="UnitPrice">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <column id="344" parent="304" name="Subtotal">
+    <column id="346" parent="304" name="Subtotal">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>decimal(12,2 digit)|0s</StoredType>
     </column>
-    <foreign-key id="345" parent="304" name="SaleItems_ibfk_1">
+    <foreign-key id="347" parent="304" name="SaleItems_ibfk_1">
       <ColNames>SaleID</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>SaleID</RefColNames>
       <RefTableName>Sales</RefTableName>
     </foreign-key>
-    <foreign-key id="346" parent="304" name="SaleItems_ibfk_2">
+    <foreign-key id="348" parent="304" name="SaleItems_ibfk_2">
       <ColNames>ProductID</ColNames>
       <RefColNames>ProductID</RefColNames>
       <RefTableName>Products</RefTableName>
     </foreign-key>
-    <index id="347" parent="304" name="PRIMARY">
+    <index id="349" parent="304" name="PRIMARY">
       <ColNames>SaleItemID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="348" parent="304" name="SaleID">
+    <index id="350" parent="304" name="SaleID">
       <ColNames>SaleID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="349" parent="304" name="ProductID">
+    <index id="351" parent="304" name="ProductID">
       <ColNames>ProductID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="350" parent="304" name="PRIMARY">
+    <key id="352" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="351" parent="305" name="SaleID">
+    <column id="353" parent="305" name="SaleID">
       <AutoIncrement>2</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="352" parent="305" name="SaleDate">
+    <column id="354" parent="305" name="SaleDate">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>2</Position>
       <StoredType>datetime|0s</StoredType>
     </column>
-    <column id="353" parent="305" name="EmployeeID">
+    <column id="355" parent="305" name="EmployeeID">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="354" parent="305" name="CustomerID">
+    <column id="356" parent="305" name="CustomerID">
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="355" parent="305" name="PaymentMethod">
+    <column id="357" parent="305" name="PaymentMethod">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>enum(&apos;Cash&apos;, &apos;Card&apos;)|0e</StoredType>
     </column>
-    <column id="356" parent="305" name="TotalAmount">
+    <column id="358" parent="305" name="TotalAmount">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>decimal(12,2 digit)|0s</StoredType>
     </column>
-    <foreign-key id="357" parent="305" name="Sales_ibfk_1">
+    <foreign-key id="359" parent="305" name="Sales_ibfk_1">
       <ColNames>EmployeeID</ColNames>
       <RefColNames>EmployeeID</RefColNames>
       <RefTableName>Employees</RefTableName>
     </foreign-key>
-    <foreign-key id="358" parent="305" name="Sales_ibfk_2">
+    <foreign-key id="360" parent="305" name="Sales_ibfk_2">
       <ColNames>CustomerID</ColNames>
       <RefColNames>CustomerID</RefColNames>
       <RefTableName>Customers</RefTableName>
     </foreign-key>
-    <index id="359" parent="305" name="PRIMARY">
+    <index id="361" parent="305" name="PRIMARY">
       <ColNames>SaleID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="360" parent="305" name="EmployeeID">
+    <index id="362" parent="305" name="EmployeeID">
       <ColNames>EmployeeID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="361" parent="305" name="CustomerID">
+    <index id="363" parent="305" name="CustomerID">
       <ColNames>CustomerID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="362" parent="305" name="PRIMARY">
+    <key id="364" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="363" parent="306" name="SupplierID">
-      <AutoIncrement>4</AutoIncrement>
+    <column id="365" parent="306" name="SupplierID">
+      <AutoIncrement>7</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="364" parent="306" name="SupplierName">
+    <column id="366" parent="306" name="SupplierName">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="365" parent="306" name="ContactName">
+    <column id="367" parent="306" name="ContactName">
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="366" parent="306" name="Phone">
+    <column id="368" parent="306" name="Phone">
       <Position>4</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="367" parent="306" name="Email">
+    <column id="369" parent="306" name="Email">
       <Position>5</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="368" parent="306" name="Address">
+    <column id="370" parent="306" name="Address">
       <Position>6</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <index id="369" parent="306" name="PRIMARY">
+    <index id="371" parent="306" name="PRIMARY">
       <ColNames>SupplierID</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="370" parent="306" name="PRIMARY">
+    <key id="372" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
